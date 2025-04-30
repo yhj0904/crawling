@@ -40,3 +40,16 @@ def get_detail_content(detail_url):
     result["공모예정월"] = ', '.join(months) if months else "[없음]"
 
     return result
+
+def print_pretty_detail(data):
+    print("\n📌 상세 페이지 요약\n" + "="*50)
+    field_order = [
+        "전문기관", "사업년도", "사업", "사업목적",
+        "지원대상분야", "지원내용", "세부사항",
+        "첨부파일", "공모예정월"
+    ]
+
+    for field in field_order:
+        value = data.get(field, "[없음]").strip()
+        print(f"\n✅ {field}\n{'-'*len(field)}")
+        print(value)

@@ -3,6 +3,8 @@ from bs4 import BeautifulSoup
 import time
 import re
 
+from deteilpagecr import print_pretty_detail, get_detail_content
+
 def get_titles_from_page(page_num):
     url = f"https://www.iris.go.kr/contents/retrieveAncmPrntcListView.do?pageIndex={page_num}"
     response = requests.get(url)
@@ -35,7 +37,7 @@ def get_titles_from_page(page_num):
                 detail_text = get_detail_content(detail_url) if detail_url else '[URL 없음]'
                 
                 print(detail_url)
-                print(detail_text)
+                print_pretty_detail(detail_text)
         print("---")
 
     return total_pages, current_page

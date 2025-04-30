@@ -31,7 +31,11 @@ def get_titles_from_page(page_num):
                     f"&ancmPrntcSn={params[3]}&ancmTurn={params[4]}&seq={params[5]}"
                     f"&hirkSorgnBsnsCd={params[6]}&sorgnId={params[7]}"
                 )
+                
+                detail_text = get_detail_content(detail_url) if detail_url else '[URL 없음]'
+                
                 print(detail_url)
+                print(detail_text)
         print("---")
 
     return total_pages, current_page

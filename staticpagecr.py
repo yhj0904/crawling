@@ -2,8 +2,11 @@ import requests
 from bs4 import BeautifulSoup
 import time
 import re
+import json, datetime, copy, types
 
 from deteilpagecr import print_pretty_detail, get_detail_content
+
+_collected = []
 
 def get_titles_from_page(page_num):
     url = f"https://www.iris.go.kr/contents/retrieveAncmPrntcListView.do?pageIndex={page_num}"
@@ -42,6 +45,14 @@ def get_titles_from_page(page_num):
 
     return total_pages, current_page
 
+_original_ppd = print_pretty_detail 
+
+def _patched_ppd(data, *args, **kwargs):
+    _collected.append(copy.deepcopy(data))   # 내용 보존
+    return _original_ppd(data, *args, **kwargs)
+
+globals()['print_pretty_detail'] = _patched_ppd
+
 page = 1
 while True:
     print(f"\n=== Page {page} ===")
@@ -52,3 +63,10 @@ while True:
 
     page += 1
     time.sleep(1)
+
+stamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+outfile = f"iris_{stamp}.json"
+with open(outfile, "w", encoding="utf-8") as f:
+    json.dump(_collected, f, ensure_ascii=False, indent=2)
+
+print(f"\n✅ 수집 완료! {_collected.__len__():,} 건을 '{outfile}'에 저장했습니다.")

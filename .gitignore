@@ -53,3 +53,5 @@ downloads/
 *.pdf
 *.xls
 *.xlsx
+
+*.json

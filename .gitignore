@@ -1,0 +1,55 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+.venv/
+venv/
+ENV/
+env/
+.venv.bak/
+*.egg-info/
+
+# VSCode or JetBrains IDEs
+.vscode/
+.idea/
+
+# Mac OS / Windows
+.DS_Store
+Thumbs.db
+
+# Logs and local dumps
+*.log
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Downloaded data
+downloads/
+*.zip
+*.pdf
+*.xls
+*.xlsx
+
+# Secrets (if any)
+.env
+secrets.json
+
+# Cache / test / profiling
+.cache/
+*.prof
+*.bak
+
+# Pytest
+.pytest_cache/
+
+# SQLite
+*.sqlite3
+
+# Downloads
+downloads/
+*.zip
+*.pdf
+*.xls
+*.xlsx
